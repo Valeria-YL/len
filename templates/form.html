@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,7 +22,7 @@
             <button type="submit" class="btn btn-primary">Añadir</button>
         </form>
 
-        <h2 class="mt-5">Contacts</h2>
+        <h2 class="mt-5">Registros</h2>
         <table class="table table-bordered mt-3">
             <thead class="thead-dark">
                 <tr>
@@ -32,13 +32,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for contact in contacts %}
+                {%for registro in contacts %}
                 <tr>
-                    <td>{{ contact.id }}</td>
-                    <td>{{ contact.nombre }}</td>
-                    <td>{{ contact.apellido }}</td>
+                    <td>{{ registro.id }}</td>
+                    <td>{{ registro.nombre }}</td>
+                    <td>{{ registro.apellido }}</td>
                 </tr>
-                {% endfor %}
+               {% endfor %}
             </tbody>
         </table>
     </div>

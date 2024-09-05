@@ -12,15 +12,15 @@ def index():
 
     try:
         cursor.execute("SELECT id, nombre, apellido FROM usuario")
-        contacts = cursor.fetchall()
+        registro = cursor.fetchall()
     except pymysql.MySQLError as e:
         print(f"Error: {e}")
-        contacts = []
+        registro = []
     finally:
         cursor.close()
         connection.close()
 
-    return render_template('form.html', contacts=contacts)
+    return render_template('form.html', contacts = registro)
 
 @app.route('/', methods=['POST'])
 def submit():
