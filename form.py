@@ -10,7 +10,7 @@ def index():
     cursor = connection.cursor(pymysql.cursors.DictCursor)
 
     try:
-        cursor.execute("SELECT * FROM People")
+        cursor.execute("SELECT * FROM usuario")
         contacts = cursor.fetchall()
     except pymysql.MySQLError as e:
         print(f"Error: {e}")
@@ -23,14 +23,14 @@ def index():
 
 @app.route('/', methods=['POST'])
 def submit():
-    name = request.form['name']
-    surname = request.form['surname']
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
     
     connection = getDBConnection()
     cursor = connection.cursor()
 
     try:
-        cursor.execute("INSERT INTO People (Name, Surname) VALUES (%s,%s)", (name, surname))
+        cursor.execute("INSERT INTO usuario (nombre, apellido) VALUES (%s,%s)", (nombre, apellido))
         connection.commit()
     except pymysql.MySQLError as e:
         print(f"Error: {e}")
