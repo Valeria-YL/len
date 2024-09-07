@@ -39,6 +39,10 @@
                     <td>{{ registro.apellido }}</td>
                     <td>
                         <a href="{{ url_for('edit', contact_id=registro.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ url_for('delete', contact_id=registro.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+
                     </td>
                 </tr>
                {% endfor %}

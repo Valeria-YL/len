@@ -51,7 +51,7 @@ def edit(contact_id):
         cursor.execute("SELECT id, nombre, apellido FROM usuario WHERE id=%s",(contact_id))
         contact = cursor.fetchone()
     except pymysql.MySQLError as e:
-        app.logger.error(f"Error:{e}")
+        print(f"Error: {e}")
         contact = None
     finally:
         cursor.close()
@@ -70,12 +70,29 @@ def update(contact_id):
         cursor.execute("UPDATE usuario SET nombre = %s, apellido = %s WHERE id=%s ", (nombre, apellido,contact_id))
         connection.commit()
     except pymysql.MySQLError as e:
-        app.logger.error(f"Error: {e}")
+        print(f"Error: {e}")
     finally:
         cursor.close()
         connection.close()
 
     return redirect(url_for('index'))
+
+@app.route('/delete/<int:contact_id>', methods=['POST'])
+def delete(contact_id):
+    connection = getDBConnection()
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute("DELETE FROM usuario WHERE id=%s", (contact_id))
+        connection.commit()
+    except pymysql.MySQLError as e: 
+        print(f"Error: {e}")
+    finally:
+        cursor.close()
+        connection.close()
+
+    return redirect(url_for('index'))
+
 
 
 
