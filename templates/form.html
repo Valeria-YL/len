@@ -37,10 +37,28 @@
                     <td>{{ registro.id }}</td>
                     <td>{{ registro.nombre }}</td>
                     <td>{{ registro.apellido }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', contact_id=registro.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    </td>
                 </tr>
                {% endfor %}
             </tbody>
         </table>
+
+        {% if contact_to_edit %}
+        <h2 class="mt-5">Editar usuario</h2>
+        <form action="{{ url_for('update', contact_id=contact_to_edit.id) }}" method="post">
+            <div class="form-group">
+                <label for="edit_nombre">Nombre:</label>
+                <input type="text" class="form-control" id="edit_nombre" name="nombre" value="{{ contact_to_edit.nombre }}" required>
+            </div>
+            <div class="form-group">
+                <label for="edit_apellido">Apellido:</label>
+                <input type="text" class="form-control" id="edit_apellido" name="apellido" value="{{ contact_to_edit.apellido }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+        {% endif %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
