@@ -56,7 +56,7 @@ def edit(contact_id):
     finally:
         cursor.close()
         connection.close()
-    return render_template('form.html',contacts=[], contact_to_edit=contact)
+    return render_template('edit_contact.html',contacts=[], contact_to_edit=contact)
 
 @app.route('/update/<int:contact_id>', methods =['POST'])
 def update(contact_id):
